@@ -49,6 +49,13 @@
     <Compile Include="Data\Decorator\Tie.cs" />
     <Compile Include="Data\Decorator\Trousers.cs" />
     <Compile Include="Data\Decorator\TShirts.cs" />
+    <Compile Include="Data\Proxy\IGiveGift.cs" />
+    <Compile Include="Data\Proxy\Proxy.cs" />
+    <Compile Include="Data\Proxy\ProxyV2.cs" />
+    <Compile Include="Data\Proxy\Pursuit.cs" />
+    <Compile Include="Data\Proxy\RealSubject.cs" />
+    <Compile Include="Data\Proxy\SchoolGril.cs" />
+    <Compile Include="Data\Proxy\Suject.cs" />
     <Compile Include="Data\SimpleFactory\ISimpleFactoryPattern.cs" />
     <Compile Include="Data\SimpleFactory\SimpleFactoryPattern.cs" />
     <Compile Include="Data\Strategy\CashContext.cs" />

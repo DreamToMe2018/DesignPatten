@@ -1,4 +1,5 @@
 ﻿using DesignPattern.Data.Decorator;
+using DesignPattern.Data.Proxy;
 using DesignPattern.Data.SimpleFactory;
 using DesignPattern.Data.Strategy;
 using NUnit.Framework;
@@ -92,12 +93,19 @@ namespace DesignTest
         //  至於ConcreteDecorator就是具體的裝飾物件，負責為Component添加職責」
         // 裝飾模式是利用方法來對物件進行包裝，這樣每個裝飾物件的實現就和如何使用這個物件分離開了，每個裝飾物件只關心自己的功能，不需要關心如何被添加到物件鍊當中
         // 如果只有一個ConcreteComponent類別而沒有抽象的Component類別，那麼Decorator類別可以是ConcreteComponent的一個子類別。同樣道理，如果只有一個ConcreteDecorator類別，那麼就沒有必要建立一個單獨的Decorator類別，而可以把Decorator和ConcreteDecorator的責任合併成一個類別。
+        // 結尾:裝飾模式是為既有功能動態地增加更多功能的一種方式
+        // 何時使用:當系統需要新功能時，是在舊的類別中添加新的程式碼。這些新增的程式碼通常裝飾了原有類別的核心職責或主要行為，比如用西裝來裝飾小菜
+        // ，這種做法的問題在於，它們在主類別中加入新的欄位，新的方法和新的邏輯，從而增加了主類別的複雜度，而這些新加入的東西只是為了滿足一些只
+        // 在某種特定情況下才會執行的特殊行為時，客戶程式碼就可以在執行時，根據需要有選擇地、按順序地使用裝飾功能包裝物件
+        // 裝飾模式的優點，就是把類別中的裝飾功能從類別中搬移去除，這些可以簡化原有的類別
+        // 有效地把類別的核心職責和裝飾功能區分開，而且可以去除相關類別中重複的裝飾邏輯
         [Test]
         public void Decoratot()
         {
+            // 可參考PaymentController SetPayDataStatusToPayment
             var person = new Person("小菜");
 
-            // 第一種裝扮
+            Console.WriteLine($"第一種裝扮");
             var pqx = new Sneakers();
             var kk = new Trousers();
             var dtx = new TShirts();
@@ -105,6 +113,38 @@ namespace DesignTest
             kk.Decorate(pqx);
             dtx.Decorate(kk);
             dtx.Show();
+
+            Console.WriteLine($"第二種裝扮");
+            var px = new LeatherShoes();
+            var ld = new Tie();
+            var xz = new BusinessSuit();
+            px.Decorate(person);
+            ld.Decorate(px);
+            xz.Decorate(ld);
+            xz.Show();
         }
+
+        // 代理模式
+        // 為其他物件提供一種代理以控制對這個物件的存取
+        // 2個Class用一樣的介面，然後其中一個可以呼叫另一個代理的介面
+        // 何時使用:
+        // 1.遠端代理，也就是為一個物件在不同的位址空間提供局部代表。這樣可以隱藏一個物件存在於不同位址空間的事實 (例如WebService的WebReference)
+        // 2.虛擬代理，是根據需要建立消耗很大的物件。透過它來存取實體化需要很長時間的真實物件。(例如讀很大的Html文字會先出來，圖片會被瀏覽器代理來代替真實的圖片，此時代理儲存真實圖片的路徑和尺寸) 瀏覽器就是用代理模式優化下載
+        // 3.安全代理，用來控制真實物件存取時的許可權(一般用於物件應該有不同的存取許可權時)
+        // 4.智慧代理，是指當調用真實的物件時，代理處理另外一些事(如計算真實物件的參考次數，或第一次參考的物件把它裝到記憶體或在存取實體物件前檢查是否已經鎖定)
+        public void Proxy()
+        {
+            // 場景: 小菜(追求者)叫大鳥(代理)送東西給娜娜(被追求者)
+            var gril = new SchoolGril { Name = "娜娜" };
+            var proxy = new Proxy(gril);
+
+            // Suject類別 定義了ReadSubject和Proxy的共用介面，這樣任何使用ReadSubject的地方都可以用Proxy
+            // ReadSubject類別，定義Proxy所代表的真實實體
+            // Proxy類別，保存一個參考使得代理可以存取實體，並提供一個與Subject的介面相同的介面，這樣代理就可以用來代替實體
+            var proxyV2 = new ProxyV2();
+            proxyV2.Request();
+            Console.Read();
+        }
+
     }
 }
