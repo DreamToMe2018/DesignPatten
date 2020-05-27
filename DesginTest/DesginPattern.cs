@@ -1,4 +1,5 @@
 ﻿using DesignPattern.Data.Decorator;
+using DesignPattern.Data.Noghtingale;
 using DesignPattern.Data.Proxy;
 using DesignPattern.Data.SimpleFactory;
 using DesignPattern.Data.Strategy;
@@ -146,5 +147,23 @@ namespace DesignTest
             Console.Read();
         }
 
+        // 工廠方法模式
+        // 定義一個用於建立物件的介面，讓子類決定實體化哪一個類別。工廠方法使一個類別的實力化延遲到其子類別
+        public void Noghtingale()
+        {
+            IFactory factory = new UndergraduateFactory();
+            Noghtingale student = factory.CreateNoghtingale("");
+
+            student.BuyRice();
+            student.Sweep();
+            student.Wash();
+
+            IFactory factory1 = new VolunteerFactory();
+            Noghtingale student1 = factory1.CreateNoghtingale("");
+
+            student1.BuyRice();
+            student1.Sweep();
+            student1.Wash();
+        }
     }
 }

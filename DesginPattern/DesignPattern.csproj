@@ -49,6 +49,12 @@
     <Compile Include="Data\Decorator\Tie.cs" />
     <Compile Include="Data\Decorator\Trousers.cs" />
     <Compile Include="Data\Decorator\TShirts.cs" />
+    <Compile Include="Data\Noghtingale\IFactory.cs" />
+    <Compile Include="Data\Noghtingale\Noghtingale.cs" />
+    <Compile Include="Data\Noghtingale\Undergraduate.cs" />
+    <Compile Include="Data\Noghtingale\UndergraduateFactory.cs" />
+    <Compile Include="Data\Noghtingale\Volunteer.cs" />
+    <Compile Include="Data\Noghtingale\VolunteerFactory.cs" />
     <Compile Include="Data\Proxy\IGiveGift.cs" />
     <Compile Include="Data\Proxy\Proxy.cs" />
     <Compile Include="Data\Proxy\ProxyV2.cs" />
