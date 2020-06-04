@@ -49,12 +49,21 @@
     <Compile Include="Data\Decorator\Tie.cs" />
     <Compile Include="Data\Decorator\Trousers.cs" />
     <Compile Include="Data\Decorator\TShirts.cs" />
+    <Compile Include="Data\Facade\Facade.cs" />
+    <Compile Include="Data\Facade\SubSystemFour.cs" />
+    <Compile Include="Data\Facade\SubSystemOne.cs" />
+    <Compile Include="Data\Facade\SubSystemThree.cs" />
+    <Compile Include="Data\Facade\SubSystemTwo.cs" />
     <Compile Include="Data\Noghtingale\IFactory.cs" />
     <Compile Include="Data\Noghtingale\Noghtingale.cs" />
     <Compile Include="Data\Noghtingale\Undergraduate.cs" />
     <Compile Include="Data\Noghtingale\UndergraduateFactory.cs" />
     <Compile Include="Data\Noghtingale\Volunteer.cs" />
     <Compile Include="Data\Noghtingale\VolunteerFactory.cs" />
+    <Compile Include="Data\Prototype\ICloneable.cs" />
+    <Compile Include="Data\Prototype\Resume.cs" />
+    <Compile Include="Data\Prototype\ResumeV2.cs" />
+    <Compile Include="Data\Prototype\WorkExperience.cs" />
     <Compile Include="Data\Proxy\IGiveGift.cs" />
     <Compile Include="Data\Proxy\Proxy.cs" />
     <Compile Include="Data\Proxy\ProxyV2.cs" />
@@ -74,6 +83,9 @@
     <Compile Include="Data\Strategy\ConcreteStrategyC.cs" />
     <Compile Include="Data\Strategy\Context.cs" />
     <Compile Include="Data\Strategy\Strategy.cs" />
+    <Compile Include="Data\Template\AbstractClass.cs" />
+    <Compile Include="Data\Template\ConcreateClassA.cs" />
+    <Compile Include="Data\Template\ConcreateClassB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

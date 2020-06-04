@@ -1,8 +1,11 @@
 ﻿using DesignPattern.Data.Decorator;
+using DesignPattern.Data.Facade;
 using DesignPattern.Data.Noghtingale;
+using DesignPattern.Data.Prototype;
 using DesignPattern.Data.Proxy;
 using DesignPattern.Data.SimpleFactory;
 using DesignPattern.Data.Strategy;
+using DesignPattern.Data.Template;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -164,6 +167,71 @@ namespace DesignTest
             student1.BuyRice();
             student1.Sweep();
             student1.Wash();
+        }
+
+        // 原型模式 用原型實例指定建立物件的種類，並且透過拷貝這些原型建立新的物件
+        // 原型模式其實就是從一個物件再建立另一個可訂製的物件，而且不需知道任何建立的細節
+        // 一般在初始化的資訊不發生變化的情況下，複製是最好的行為。這既隱藏了物件建立的細節，又對性能大大的提升
+        [Test]
+        public void Prototype()
+        {
+            // 淺複製
+            Resume resume = new Resume("大鳥");
+            resume.SetPersonalInfo("男", "29");
+            resume.SetWorkWxpweience("1998-2000", "XX公司");
+
+            Resume resume1 = (Resume)resume.Clone();
+            resume1.SetWorkWxpweience("1998-2006", "YY企業");
+
+            Resume resume2 = (Resume)resume.Clone();
+            resume2.SetPersonalInfo("男", "24");
+
+            resume.Display();
+            resume1.Display();
+            resume2.Display();
+
+            // 深複製
+            ResumeV2 resume3 = new ResumeV2("大鳥");
+            resume3.SetPersonalInfo("男", "29");
+            resume3.SetWorkWxpweience("1998-2000", "XX公司");
+
+            ResumeV2 resume4 = (ResumeV2)resume3.Clone();
+            resume4.SetWorkWxpweience("1998-2006", "YY企業");
+
+            ResumeV2 resume5 = (ResumeV2)resume3.Clone();
+            resume5.SetPersonalInfo("男", "24");
+
+            resume3.Display();
+            resume4.Display();
+            resume5.Display();
+        }
+
+        // 範本方法模式
+        // 當我們要完成某一細節層次一致的一個過程或一系列步驟，但其個別步驟在更詳細的層次上的實現可能不同時，可以用範本方法模式處理
+        // 有重複地就搬出來
+        // 當不變的和可變的行為在方法的子類別實現中混合在一起的時候，不變的行為就會在子類別中重複出現。透過範本方法模式把這些行為搬移到單一的地方，這樣就幫助子類別擺脫重複的不變行為的糾纏
+        public void Template()
+        {
+            AbstractClass abstractClass;
+
+            abstractClass = new ConcreateClassA();
+            abstractClass.TemplateMethod();
+
+            abstractClass = new ConcreateClassB();
+            abstractClass.TemplateMethod();
+        }
+
+        // 迪米特法則
+        // 在類別的結構設計上，每一個類別都應當盡量降低成員的使用許可證
+        // 類別之間的耦合越弱，越有利於複用，一個處在弱耦合的類別被修改，不會對有關係的類別造成波及
+
+        // 外觀模式
+        public void Facade()
+        {
+            Facade facade = new Facade();
+
+            facade.MethodA();
+            facade.MethodB();
         }
     }
 }
